@@ -14,7 +14,7 @@ load_dotenv()
 api_key = os.getenv("GEMINI_API_KEY")
 client = genai.Client(api_key=api_key)
 
-max_iterations = 3
+max_iterations = 8
 last_response = None
 iteration = 0
 iteration_response = []
@@ -117,7 +117,7 @@ async def main():
                 
                 print("Created system prompt...")
                 
-                system_prompt = f"""You are a math agent solving problems in iterations. You have access to various mathematical tools.
+                system_prompt = f"""You are an agent solving problems in iterations. You have access to various tools.
 
 Available tools:
 {tools_description}
@@ -142,7 +142,7 @@ Examples:
 DO NOT include any explanations or additional text.
 Your entire response should be a single line starting with either FUNCTION_CALL: or FINAL_ANSWER:"""
 
-                query = """Find the ASCII values of characters in INDIA and then return sum of exponentials of those values. """
+                query = """Open Microsoft Paint, then draw a rectangle from (1560, 950) to (2160, 1350), and finally, Find the sum of exponentials of ASCII values of characters in 'INDIA' and write the returned value as text at position (1560, 950)."""
                 print("Starting iteration loop...")
                 
                 # Use global iteration variables
@@ -268,33 +268,6 @@ Your entire response should be a single line starting with either FUNCTION_CALL:
 
                     elif response_text.startswith("FINAL_ANSWER:"):
                         print("\n=== Agent Execution Complete ===")
-                        result = await session.call_tool("open_paint")
-                        print(result.content[0].text)
-
-                        # Wait longer for Paint to be fully maximized
-                        await asyncio.sleep(1)
-
-                        # Draw a rectangle
-                        result = await session.call_tool(
-                            "draw_rectangle",
-                            arguments={
-                                "x1": 1560,
-                                "y1": 950,
-                                "x2": 2160,
-                                "y2": 1350
-                            }
-                        )
-                        print(result.content[0].text)
-
-                        # Draw rectangle and add text
-                        result = await session.call_tool(
-                            "add_text_in_paint",
-                            arguments={
-                                "text": response_text,
-                                "x1": 1560,
-                                "y1": 950
-                            }
-                        )
                         print(result.content[0].text)
                         break
 

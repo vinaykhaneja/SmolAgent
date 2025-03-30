@@ -154,8 +154,8 @@ def fibonacci_numbers(n: int) -> list:
 
 
 @mcp.tool()
-async def draw_rectangle(x1: int, y1: int, x2: int, y2: int) -> dict:
-    """Draw a rectangle in Paint from (x1,y1) to (x2,y2)"""
+async def draw_rectangle(point1: int, point2: int, point3: int, point4: int) -> dict:
+    """Draw a rectangle in Paint from (point1,point2) to (point3,point4)"""
     global paint_app
     try:
         if not paint_app:
@@ -185,16 +185,16 @@ async def draw_rectangle(x1: int, y1: int, x2: int, y2: int) -> dict:
         
         # Draw rectangle - coordinates should already be relative to the Paint window
         # No need to add primary_width since we're clicking within the Paint window
-        paint_window.click_input(coords=(x1, y1))
-        canvas.press_mouse_input(coords=(x1, y1))
-        canvas.move_mouse_input(coords=(x2, y2))
-        canvas.release_mouse_input(coords=(x2, y2))
+        paint_window.click_input(coords=(point1, point2))
+        canvas.press_mouse_input(coords=(point1, point2))
+        canvas.move_mouse_input(coords=(point3, point4))
+        canvas.release_mouse_input(coords=(point3, point4))
         
         return {
             "content": [
                 TextContent(
                     type="text",
-                    text=f"Rectangle drawn from ({x1},{y1}) to ({x2},{y2})"
+                    text=f"Rectangle drawn from ({point1},{point2}) to ({point3},{point4})"
                 )
             ]
         }
