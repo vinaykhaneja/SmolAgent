@@ -382,14 +382,12 @@ def send_email(to, subject, message_text):
     # Add CC only if 'to' and 'your_email' are different
     cc_email = your_email if to != your_email else None
 
-    print(message_text)
+    # Ensure newlines are properly handled by replacing any potential "\n" with actual line breaks
+    message_text = message_text.replace(r'\n', '\n')  # This makes sure \n is treated correctly
 
     # Create the email message
     message = MIMEText(message_text)
 
-    print(message)
-
-    break
     message['to'] = to
     if cc_email:  # Add CC only if different
         message['cc'] = cc_email

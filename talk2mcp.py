@@ -142,7 +142,8 @@ Examples:
 DO NOT include any explanations or additional text.
 Your entire response should be a single line starting with either FUNCTION_CALL: or FINAL_ANSWER:"""
 
-                query = """Open Microsoft Paint, then draw a rectangle from (1560, 950) to (2160, 1350), and finally, Find the sum of exponentials of ASCII values of characters in 'INDIA' and write the returned value as text at position (1560, 950)."""
+                # query = """Open Microsoft Paint, then draw a rectangle from (1560, 950) to (2160, 1350), and finally, Find the sum of exponentials of ASCII values of characters in 'INDIA' and write the returned value as text at position (1560, 950)."""
+                query = """Generate an email to send to vinaysupermario@gmail.com, requesting an extension for the Session-2 quiz deadline. Mention that I, Vinay, missed the quiz, have not attempted it, and cannot view the post-attempt content. Ask if it would be possible for me to take the quiz at a later date. The email should have an appropriate subject line and be written in a polite and professional tone. Address the professor as 'Rohan' and sign off as 'Vinay'."""
                 print("Starting iteration loop...")
                 
                 # Use global iteration variables
