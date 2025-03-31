@@ -374,18 +374,24 @@ def authenticate_gmail():
 @mcp.tool()
 def send_email(to, subject, message_text):
     """Send an email using Gmail API."""
-    service = authenticate_gmail()  # ✅ Calling authenticate_gmail here
+    service = authenticate_gmail()  # Calling authenticate_gmail here
 
     # Replace this with your email address
-    your_email = "vinaysupermario@gmail.com"  # ✅ Your email for CC
+    your_email = "vinaysupermario@gmail.com"  # Your email for CC
 
     # Add CC only if 'to' and 'your_email' are different
     cc_email = your_email if to != your_email else None
 
+    print(message_text)
+
     # Create the email message
     message = MIMEText(message_text)
+
+    print(message)
+
+    break
     message['to'] = to
-    if cc_email:  # ✅ Add CC only if different
+    if cc_email:  # Add CC only if different
         message['cc'] = cc_email
     message['subject'] = subject
 
@@ -394,11 +400,9 @@ def send_email(to, subject, message_text):
     # Send the email
     try:
         sent_message = service.users().messages().send(userId="me", body={'raw': raw_message}).execute()
-        print(f"Message Id: {sent_message['id']}")
-        return sent_message
+        return (f"Email sent successfully with Message Id: {sent_message['id']}")
     except Exception as error:
-        print(f"An error occurred: {error}")
-        return None
+        return (f"Email failed to send. An error occurred: {error}")
 
 
 if __name__ == "__main__":

@@ -33,10 +33,10 @@ def authenticate_gmail():
 
 def send_email(to, subject, message_text):
     """Send an email using Gmail API."""
-    service = authenticate_gmail()  # ✅ Calling authenticate_gmail here
+    service = authenticate_gmail()  # Calling authenticate_gmail here
 
     # Replace this with your email address
-    your_email = "vinaysupermario@gmail.com"  # ✅ Your email for CC
+    your_email = "vinaysupermario@gmail.com"  # Your email for CC
 
     # Add CC only if 'to' and 'your_email' are different
     cc_email = your_email if to != your_email else None
@@ -44,7 +44,7 @@ def send_email(to, subject, message_text):
     # Create the email message
     message = MIMEText(message_text)
     message['to'] = to
-    if cc_email:  # ✅ Add CC only if different
+    if cc_email:  # Add CC only if different
         message['cc'] = cc_email
     message['subject'] = subject
 
